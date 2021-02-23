@@ -1,0 +1,42 @@
+<div id="carouselExampleControls" class="mt-4 carousel slide carousel-fade imgsize top-20 start-50 translate-middle-x" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <a href={{path('bases')}}><img src="/img/bases.jpg" class="d-block imgsize" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Bases</h5>
+            </div></a>
+        </div>
+        <div class="carousel-item">
+            <a href={{path('aviones')}}><img src="/img/aviones.jpg" class="d-block imgsize" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Aviones</h5>
+            </div></a>
+        </div>
+        <div class="carousel-item">
+            <a href={{path('personal')}}><img src="/img/personal.jpg" class="d-block imgsize" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Personal</h5>
+            </div></a>
+        </div>
+        <div class="carousel-item">
+            <a href={{path('vuelos')}}><img src="/img/vuelos.jpg" class="d-block imgsize" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Vuelos</h5>
+            </div></a>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

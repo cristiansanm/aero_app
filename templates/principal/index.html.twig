@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PrincipalController!{% endblock %}
+
+{% block body %}
+<div class="row">
+    {% include 'principal/_carrusel.html.twig'%}
+</div>
+<div class="row mt-3 bg-azul rounded p-3">
+    <div class="col-12">
+        <h1 class="text-warning">¡Bienvenidos a Aerovuelo!</h1>
+        <p class="text-white">En esta aplicación podrás visitar toda la información de las bases, los aviones
+            disponibles, el personal en el vuelo y los vuelos ya realizados y los próximos.</p>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-6">
+        <div class="bg-warning w-75 card start-50 translate-middle-x" style="width: 18rem;">
+            <img src="/img/bases2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Bases</h5>
+                <p class="card-text">Visita la página de bases.</p>
+                <a href={{path('bases')}} class="btn bg-azul text-warning">Visitar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="bg-warning w-75 card start-50 translate-middle-x" style="width: 18rem;">
+            <img src="/img/aviones2.jpeg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Aviones</h5>
+                <p class="card-text">Visita la página de los aviones.</p>
+                <a href={{path('aviones')}} class="btn bg-azul text-warning">Visitar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-6">
+        <div class="bg-warning w-75 card start-50 translate-middle-x" style="width: 18rem;">
+            <img src="/img/personal2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Personal</h5>
+                <p class="card-text">Visita la página del personal.</p>
+                <a href={{path('personal')}} class="btn bg-azul text-warning">Visitar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="bg-warning w-75 card start-50 translate-middle-x" style="width: 18rem;">
+            <img src="/img/vuelos2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Vuelos</h5>
+                <p class="card-text">Visita la página de los vuelos.</p>
+                <a href={{path('vuelos')}} class="btn bg-azul text-warning">Visitar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

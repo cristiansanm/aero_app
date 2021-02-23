@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AvionesController!{% endblock %}
+
+{% block body %}
+    <table class="mt-3 table table-bordered table-responsive table-striped">
+        <caption>Lista de aviones</caption>
+        <thead class="text-uppercase bg-azul bg-gradient">
+            <tr class="text-white">
+                <th>ID</th>
+                <th>Base</th>
+                <th>Tipo</th>
+                <th>disponible</th>
+            </tr>
+        </thead>
+        <tbody class="text-uppercase table-warning align-content-center">
+            <tr>
+            {% for avion in aviones %}
+                <td scope="row">{{avion.id}}</td>
+                <td scope="row">
+                     {{avion.baseavion.nombre}}
+                </td>
+                <td scope="row">{{avion.tipo}}</td>
+                <td scope="row">
+                    {% if avion.disponible == 0 %}
+                    <span class="btn btn-danger"><i class="fas fa-times-circle"></i></span>
+                    {% else %}
+                    <span class="btn btn-success"><i class="fas fa-check-circle"></i></span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td scope="row">No se ha encontrado ningun dato</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado Bases{% endblock %}
+
+{% block body %}
+    <table class="table table-bordered table-striped table-responsive mt-3">
+        <caption>Lista de bases</caption>
+        <thead class="text-uppercase bg-azul bg-gradient text-white">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+            </tr>
+            </thead>
+            <tbody class="text-uppercase table-warning">
+                
+                {% for base in bases %}
+                <tr>
+                    <td scope="row">{{base.id}}</td>
+                    <td scope="row">{{base.nombre}}</td>
+                </tr>
+                {% else %}
+                <tr>    
+                    <td colspan="3" scope="row">No se han encontrado registros</td>
+                </tr>
+                {% endfor %}
+                    
+                </tr>
+            </tbody>
+    </table>
+
+{% endblock %}

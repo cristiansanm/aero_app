@@ -1,0 +1,54 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body{
+    background-image: url("/img/light-veneer.png");
+}
+.p1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: white;
+}
+.p2{
+    font-size: 1em;
+    color: white; 
+    text-align: center;
+    margin-top: 18%;
+}
+.card {
+    color: rgb(41, 41, 105);
+}
+
+.sub {
+    font-size: 1em;
+    margin-left: 12%;;
+    color: #2877b1;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background-color: gray;
+}
+
+.img1 {
+    float: right;
+}
+.bg-azul{
+    background-color: #1a1b37;
+}
+a.bg-azul:hover{
+    background-color:#2877b1;
+}
+li.sombreado:hover{
+    background-color:#b18128;
+    border-radius: 5px;
+}
+#logosize{
+    width:90%;
+    height:90%;
+}
+.imgsize{
+    width: 600px;
+    height: 300px;
+}

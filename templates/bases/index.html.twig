@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BasesController!{% endblock %}
+
+{% block body %}
+<div class="card">
+    <h5 class="card-header">Consulta General</h5>
+    <div class="card-body">
+        <h5 class="card-title">Información en la Base</h5>
+        <p class="card-text">Consulta aquí la información de todas las bases</p>
+        <a class="btn btn-warning" href={{path('lista_bases')}}>Ir a lista</a>
+    </div>
+</div>
+
+<div class="card">
+  <h5 class="card-header">Consulta</h5>
+  <div class="card-body">
+    <h5 class="card-title">Personal en una Base</h5>
+    <p class="card-text">Consulta aquí el personal actual en una determinada base</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+
+{% endblock %}
