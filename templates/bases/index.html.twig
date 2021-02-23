@@ -1,25 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BasesController!{% endblock %}
+{% block title %}Listado de Bases{% endblock %}
 
 {% block body %}
-<div class="card">
-    <h5 class="card-header">Consulta General</h5>
-    <div class="card-body">
-        <h5 class="card-title">Información en la Base</h5>
-        <p class="card-text">Consulta aquí la información de todas las bases</p>
-        <a class="btn btn-warning" href={{path('lista_bases')}}>Ir a lista</a>
-    </div>
-</div>
+    <a class="mt-3 btn btn-success" href="{{ path('bases_new') }}">Crear Nueva Base</a>
+    <table class="table table-bordered table-striped table-responsive mt-3">
+        <caption>Lista de bases</caption>
+        <thead class="text-uppercase bg-azul bg-gradient text-white">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-uppercase table-warning">
+        {% for basis in bases %}
+            <tr>
+                <td>{{ basis.id }}</td>
+                <td>{{ basis.nombre }}</td>
+                <td>
+                    <a class="btn btn-primary text-lowercase" href="{{ path('bases_show', {'id': basis.id}) }}">Mostrar</a>
+                    <a class="btn btn-warning text-lowercase" href="{{ path('bases_edit', {'id': basis.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-<div class="card">
-  <h5 class="card-header">Consulta</h5>
-  <div class="card-body">
-    <h5 class="card-title">Personal en una Base</h5>
-    <p class="card-text">Consulta aquí el personal actual en una determinada base</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-
-
+    
 {% endblock %}
