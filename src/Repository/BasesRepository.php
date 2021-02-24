@@ -18,7 +18,19 @@ class BasesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Bases::class);
     }
-
+    
+    /**
+      * @return Bases[] Returns an array of Bases objects
+     */
+    
+    public function opcionBases(){
+        return $this->createQueryBuilder('b')
+            ->select('id', 'i')
+            ->from('Aviones', 'a')
+            ->getQuery()
+            ->getResult();
+    }
+    
     // /**
     //  * @return Bases[] Returns an array of Bases objects
     //  */

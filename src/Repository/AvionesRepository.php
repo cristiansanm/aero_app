@@ -18,7 +18,13 @@ class AvionesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Aviones::class);
     }
-
+    public function consultaPorPersonalId($idForm){
+        $dql = "SELECT persona.id, persona.apellido, persona.basepersonal FROM
+        App:Aviones as persona 
+        WHERE :id = persona.id";
+        return $this->getEntityManager()
+        ->createQuery($dql)->setParameter('id', $idForm)->getOneOrNullResult();
+    }
     // /**
     //  * @return Aviones[] Returns an array of Aviones objects
     //  */
