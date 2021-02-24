@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bases{% endblock %}
+
+{% block body %}
+<div class="card mt-3">
+    <h5 class="card-header bg-azul text-white">Consulta General</h5>
+    <div class="card-body">
+        <h5 class="card-title">Información en los Aviones</h5>
+        <p class="card-text">Consulta aquí la información de todos los aviones</p>
+        <a class="btn btn-warning" href="{{path('aviones_index')}}">Ir a lista</a>
+    </div>
+</div>
+
+<div class="card mt-3">
+  <h5 class="card-header bg-azul text-white">Consulta Específica</h5>
+  <div class="card-body">
+    <h5 class="card-title">Personal en una Base</h5>
+    <p class="card-text">Consulta aquí el personal actual en una determinada base</p>
+    <a class="btn btn-warning" href="#">Hacer la consulta</a>
+  </div>
+</div>
+
+<div class="card mt-3">
+  <h5 class="card-header bg-azul text-white">Consulta Específica</h5>
+  <div class="card-body">
+    <h5 class="card-title">Aviones en una Base</h5>
+    <p class="card-text">Consulta aquí los aviones en una determinada base</p>
+    <a class="btn btn-warning" href="#">Hacer la consulta</a>
+  </div>
+</div>
+{% endblock %}

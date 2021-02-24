@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Aviones{% endblock %}
+
+{% block body %}
+    <h1 class="mt-3">Editar Avión </h1>
+
+    {{ include('aviones/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <a class="btn btn-primary mb-2" href="{{ path('aviones_index') }}">Volver a la Lista</a>
+
+    {{ include('aviones/_delete_form.html.twig') }}
+{% endblock %}
