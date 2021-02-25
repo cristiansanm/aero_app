@@ -3,7 +3,9 @@
 {% block title %}Listado de Bases{% endblock %}
 
 {% block body %}
-    <a class="mt-3 btn btn-success" href="{{ path('bases_new') }}">Crear Nueva Base</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="mt-3 btn btn-success" href="{{ path('bases_new') }}">Crear Nueva Base</a>
+    {% endif %}
     <table class="table table-bordered table-striped table-responsive mt-3">
         <caption>Lista de bases</caption>
         <thead class="text-uppercase bg-azul bg-gradient text-white">
@@ -20,7 +22,9 @@
                 <td>{{ basis.nombre }}</td>
                 <td>
                     <a class="btn btn-primary text-lowercase" href="{{ path('bases_show', {'id': basis.id}) }}">Mostrar</a>
-                    <a class="btn btn-warning text-lowercase" href="{{ path('bases_edit', {'id': basis.id}) }}">Editar</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="btn btn-warning text-lowercase" href="{{ path('bases_edit', {'id': basis.id}) }}">Editar</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

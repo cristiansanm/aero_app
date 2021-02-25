@@ -19,8 +19,10 @@
     </table>
 
     <a class="btn btn-primary" href="{{ path('bases_index') }}">Volver a la lista</a>
-    <br>
-    <a class="btn btn-warning mt-2 mb-2" href="{{ path('bases_edit', {'id': basis.id}) }}">Editar</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <br>
+        <a class="btn btn-warning mt-2 mb-2" href="{{ path('bases_edit', {'id': basis.id}) }}">Editar</a>
+        {{ include('bases/_delete_form.html.twig') }}
+    {% endif %}
     
-    {{ include('bases/_delete_form.html.twig') }}
 {% endblock %}

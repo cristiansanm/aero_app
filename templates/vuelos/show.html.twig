@@ -36,9 +36,12 @@
     </table>
 
     <a class="btn btn-primary" href="{{ path('vuelos_index') }}">Volver a la lista</a>
+    {% if is_granted('ROLE_ADMIN') %}
     <br>
     <a class="btn btn-warning mt-2" href="{{ path('vuelos_edit', {'id': vuelo.id}) }}">Editar</a>
 
     {{ include('vuelos/_delete_form.html.twig') }}
+    {% endif %}
+    
 {% endblock %}
 

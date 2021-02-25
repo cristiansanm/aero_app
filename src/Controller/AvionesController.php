@@ -44,7 +44,7 @@ class AvionesController extends AbstractController
      * @Route("/new", name="aviones_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
-    {
+    {    
         $avione = new Aviones();
         $form = $this->createForm(AvionesType::class, $avione);
         $form->handleRequest($request);

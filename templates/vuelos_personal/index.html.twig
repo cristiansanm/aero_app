@@ -31,7 +31,10 @@
                 <td>{{ vuelos_personal.auxiliar.nombre }}</td>
                 <td>
                     <a class="btn btn-primary text-lowercase" href="{{ path('vuelos_personal_show', {'id': vuelos_personal.id}) }}">mostrar</a>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <a class="btn btn-warning text-lowercase" href="{{ path('vuelos_personal_edit', {'id': vuelos_personal.id}) }}">editar</a>
+                    {% endif %}
+                    
                 </td>
             </tr>
         {% else %}

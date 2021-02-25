@@ -22,13 +22,13 @@
         {% endblock %}
     </head>
     <body>
-        {% if app.request.pathinfo != "/principal" %}
+        {% if app.request.pathinfo != "/principal" and  app.request.pathinfo != "/" %}
         {% include "comunes/_regresar.html.twig" %}
         {% endif %}
 
         {% include 'comunes/_cabeza.html.twig'  %}
 
-        {% if app.request.pathinfo != "/principal" %}
+        {% if app.request.pathinfo != "/principal" and  app.request.pathinfo != "/" %}
         {% include "comunes/_navbar.html.twig" %}
         {% endif %}
     

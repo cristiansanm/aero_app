@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <div class="count float-end mt-3 mb-2">
+        <span class="badge bg-secondary">Nº de Usuarios => {{ users.getTotalItemCount }}</span>
+    </div>
+    <a class="mt-3 btn btn-success" href="{{ path('user_new') }}">Create new</a>
+    <table class="table table-bordered table-striped table-responsive mt-3">
+        <caption>Lista de Usuarios</caption>
+        <thead class="text-uppercase bg-azul bg-gradient text-white">
+            <tr>
+                <th>{{ knp_pagination_sortable(users, 'Id', 'u.id') }}</th>
+                <th{% if users.isSorted('u.email') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(users, 'Email', 'u.email') }}
+                </th>
+                <th{% if users.isSorted('u.nombre') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(users, 'Nombre', 'u.nombre') }}
+                </th>
+                <th{% if users.isSorted('u.roles') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(users, 'Roles', 'u.roles') }}
+                </th>
+                <th>Password</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="text-uppercase table-warning">
+        {% for user in users %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.nombre }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>······</td>
+                <td>
+                    <a class="btn btn-primary text-lowercase" href="{{ path('user_show', {'id': user.id}) }}">show</a>
+                    <a class="btn btn-warning text-lowercase" href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Registros no Encontrados</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}
