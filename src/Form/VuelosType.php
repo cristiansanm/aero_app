@@ -2,28 +2,28 @@
 
 namespace App\Form;
 
-use App\Entity\VuelosPersonal;
+use App\Entity\Vuelos;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class VuelosPersonal1Type extends AbstractType
+class VuelosType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('vueloId')
-            ->add('piloto')
-            ->add('copiloto')
-            ->add('ingeniero')
-            ->add('auxiliar')
+            ->add('fecha')
+            ->add('hora')
+            ->add('origen')
+            ->add('destino')
+            ->add('avion')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => VuelosPersonal::class,
+            'data_class' => Vuelos::class,
         ]);
     }
 }
