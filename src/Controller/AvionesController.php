@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Aviones;
 use App\Form\AvionesType;
 use App\Repository\AvionesRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @Route("/aviones")
@@ -24,10 +26,17 @@ class AvionesController extends AbstractController
     /**
      * @Route("/index", name="aviones_index", methods={"GET"})
      */
-    public function index(AvionesRepository $avionesRepository): Response
+    public function index(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
+        $dql   = "SELECT a FROM App:Aviones a";
+        $query = $em->createQuery($dql);
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+        );
         return $this->render('aviones/index.html.twig', [
-            'aviones' => $avionesRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 

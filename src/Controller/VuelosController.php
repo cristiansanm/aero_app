@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Vuelos;
 use App\Form\VuelosType;
 use App\Repository\VuelosRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,10 +27,17 @@ class VuelosController extends AbstractController
     /**
      * @Route("/index", name="vuelos_index", methods={"GET"})
      */
-    public function index(VuelosRepository $vuelosRepository): Response
+    public function index(EntityManagerInterface $em, Request $request, PaginatorInterface $paginator): Response
     {
+        $dql   = "SELECT v FROM App:Vuelos v";
+        $query = $em->createQuery($dql);
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
         return $this->render('vuelos/index.html.twig', [
-            'vuelos' => $vuelosRepository->findAll(),
+            'pagination'=>$pagination,
         ]);
     }
 

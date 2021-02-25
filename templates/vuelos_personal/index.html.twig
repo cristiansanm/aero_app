@@ -1,14 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Listado de Personal en Avion{% endblock %}
+{% block title %}Listado de Personal en Vuelo{% endblock %}
 
 {% block body %}
-    {# <a class="mt-3 btn btn-success" href="{{ path('vuelos_personal_new') }}">Create new</a> #}
+    <div class="count float-end mt-3 mb-2">
+        <span class="badge bg-secondary">Nº de Personal - Vuelos => {{ pagination.getTotalItemCount }}</span>
+    </div>
+    <a class="btn btn-primary float-start mt-3 mb-2" href={{path('vuelos_index')}}>Volver a Vuelos</a>
     <table class="table table-bordered table-striped table-responsive mt-3">
         <caption>Lista de Personal en Avión</caption>
         <thead class="text-uppercase bg-azul bg-gradient text-white">
             <tr>
-                <th>Id</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'vp.id') }}</th>
+                <th>Vuelo</th>
                 <th>Piloto</th>
                 <th>Copiloto</th>
                 <th>Ingeniero</th>
@@ -17,9 +21,10 @@
             </tr>
         </thead>
         <tbody class="text-uppercase table-warning">
-        {% for vuelos_personal in vuelos_personals %}
-            <tr>
-                <td>{{ vuelos_personal.id }}</td>
+        {% for vuelos_personal in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td class="fw-bold">{{ vuelos_personal.id }}</td>
+                <td>{{ vuelos_personal.vueloId.origen.nombre }} - {{ vuelos_personal.vueloId.destino.nombre }} - {{ vuelos_personal.vueloId.id }}</td>
                 <td>{{ vuelos_personal.piloto.nombre }}</td>
                 <td>{{ vuelos_personal.copiloto.nombre }}</td>
                 <td>{{ vuelos_personal.ingeniero.nombre }}</td>
@@ -31,11 +36,13 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="2">no records found</td>
+                <td colspan="2">Registros no encontrados</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>     
 {% endblock %}

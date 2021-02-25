@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\VuelosPersonal;
-use App\Form\VuelosPersonal1Type;
+use App\Form\VuelosPersonalType;
 use App\Repository\VuelosPersonalRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +20,17 @@ class VuelosPersonalController extends AbstractController
     /**
      * @Route("/", name="vuelos_personal_index", methods={"GET"})
      */
-    public function index(VuelosPersonalRepository $vuelosPersonalRepository): Response
+    public function index(EntityManagerInterface $em, Request $request, PaginatorInterface $paginator): Response
     {
+        $dql   = "SELECT vp FROM App:VuelosPersonal vp";
+        $query = $em->createQuery($dql);
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
         return $this->render('vuelos_personal/index.html.twig', [
-            'vuelos_personals' => $vuelosPersonalRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 
@@ -31,7 +40,7 @@ class VuelosPersonalController extends AbstractController
     public function new(Request $request): Response
     {
         $vuelosPersonal = new VuelosPersonal();
-        $form = $this->createForm(VuelosPersonal1Type::class, $vuelosPersonal);
+        $form = $this->createForm(VuelosPersonalType::class, $vuelosPersonal);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +72,7 @@ class VuelosPersonalController extends AbstractController
      */
     public function edit(Request $request, VuelosPersonal $vuelosPersonal): Response
     {
-        $form = $this->createForm(VuelosPersonal1Type::class, $vuelosPersonal);
+        $form = $this->createForm(VuelosPersonalType::class, $vuelosPersonal);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

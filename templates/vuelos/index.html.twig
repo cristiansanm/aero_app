@@ -3,15 +3,22 @@
 {% block title %}Vuelos index{% endblock %}
 
 {% block body %}
+    <div class="count float-end mt-3">
+        <span class="badge bg-secondary">Nº de Vuelos => {{ pagination.getTotalItemCount }}</span>
+    </div>
     <a class="mt-3 btn btn-success" href="{{ path('vuelos_new') }}">Crear Nuevo Vuelo</a>
-    <a class="float-end mt-3 btn btn-primary" href="{{ path('vuelos_personal_index')}}">Ir al Personal en el Vuelo</a>
+    <a class="float-end mt-3 btn btn-primary me-2" href="{{ path('vuelos_personal_index')}}">Ir al Personal en el Vuelo</a>
     <table class="table table-bordered table-striped table-responsive mt-3">
         <caption>Lista de Vuelos</caption>
         <thead class="text-uppercase bg-azul bg-gradient text-white">
             <tr>
-                <th>Id</th>
-                <th>Fecha</th>
-                <th>Hora</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'v.id') }}</th>
+                <th{% if pagination.isSorted('v.fecha') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Fecha', 'v.fecha') }}
+                </th>
+                <th{% if pagination.isSorted('v.hora') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Hora', 'v.hora') }}
+                </th>
                 <th>Origen</th>
                 <th>Destino</th>
                 <th>Avión</th>
@@ -19,8 +26,8 @@
             </tr>
         </thead>
         <tbody class="text-uppercase table-warning">
-        {% for vuelo in vuelos %}
-            <tr>
+        {% for vuelo in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
                 <td class="fw-bold">{{ vuelo.id }}</td>
                 <td>{{ vuelo.fecha ? vuelo.fecha|date('Y-m-d') : '' }}</td>
                 <td>{{ vuelo.hora ? vuelo.hora|date('H:i:s') : '' }}</td>
@@ -40,5 +47,7 @@
         </tbody>
     </table>
 
-    
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>   
 {% endblock %}

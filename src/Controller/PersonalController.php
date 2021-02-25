@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Personal;
 use App\Form\PersonalType;
 use App\Repository\PersonalRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,10 +27,17 @@ class PersonalController extends AbstractController
     /**
      * @Route("/index", name="personal_index", methods={"GET"})
      */
-    public function index(PersonalRepository $personalRepository): Response
+    public function index(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request): Response
     {
+        $dql   = "SELECT p FROM App:Personal p";
+        $query = $em->createQuery($dql);
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
         return $this->render('personal/index.html.twig', [
-            'personals' => $personalRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 

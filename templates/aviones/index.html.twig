@@ -1,49 +1,62 @@
 {% extends 'base.html.twig' %}
+{% block title %}Aviones Listado{% endblock %}
 
-{% block title %}Aviones index{% endblock %}
-
+{# total items count #}
 {% block body %}
-    <a class="mt-3 btn btn-success" href="{{ path('aviones_new') }}">Crear nuevo Avión</a>
-    <table class="table table-bordered table-striped table-responsive mt-3">
-        <caption>Lista de Aviones</caption>
-        <thead class="text-uppercase bg-azul bg-gradient text-white">
-            <tr>
-                <th>Id</th>
-                <th>Tipo</th>
-                <th>Disponible</th>
-                <th>Base</th>
-                <th>acciones</th>
-            </tr>
-        </thead>
-        <tbody class="text-uppercase table-warning">
-        {% for avione in aviones %}
-            <tr>
-                <td class="fw-bold">{{ avione.id }}</td>
-                <td>{{ avione.tipo }}</td>
-                <td>
-                    {% if avione.disponible %}  
+<div class="count float-end mt-3">
+    <span class="badge bg-secondary">Nº de Aviones => {{ pagination.getTotalItemCount }}</span>
+</div>
+<a class="mt-3 btn btn-success" href="{{ path('aviones_new') }}">Crear nuevo Avión</a>
+<table class="table table-bordered table-striped table-responsive mt-3">
+    <caption>Lista de Aviones</caption>
+    <thead class="text-uppercase bg-azul bg-gradient text-white">
+        <tr>
+            {# sorting of properties based on query components #}
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+            <th{% if pagination.isSorted('a.tipo') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Tipo', 'a.tipo') }}
+            </th>
+            <th{% if pagination.isSorted('a.disponible') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Disponible', 'a.disponible') }}
+            </th>
+            <th>Base</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody class="text-uppercase table-warning">
+    {# table body #}
+        {% for avion in pagination %}
+        <tr {% if loop.index is odd %}class="color"{% endif %}>
+            <td class="fw-bold">{{ avion.id }}</td>
+            <td>{{ avion.tipo }}</td>
+            <td>
+                    {% if avion.disponible %}  
                         <span class="btn btn-success"><i class="fas fa-check-circle"></i></span>  
                         
                     {% else %}
                         <span class="btn btn-danger"><i class="fas fa-times-circle"></i></span>
                     {% endif %}
                 </td>
-                <td>
-                    {{ avione.baseavion.nombre }}
-                </td>
-                <td>
-                    <a class="btn btn-primary text-lowercase" href="{{ path('aviones_show', {'id': avione.id}) }}">mostrar</a>
-                    <a class="btn btn-warning text-lowercase" href="{{ path('aviones_edit', {'id': avione.id}) }}">editar</a>
-                </td>
-                
-            </tr>
+            <td>{{ avion.baseavion.nombre }}</td>
+            <td>
+                <a class="btn btn-primary text-lowercase" href="{{ path('aviones_show', {'id': avion.id}) }}">mostrar</a>
+                <a class="btn btn-warning text-lowercase" href="{{ path('aviones_edit', {'id': avion.id}) }}">editar</a>
+            </td>
+            
+        </tr>
         {% else %}
             <tr>
                 <td colspan="4">Registro no encontrado</td>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
     
-{% endblock %}
+        {% endfor %}
+    </tbody>
+</table>
+{# display navigation #}
+
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
+
+{% endblock %} 
+
