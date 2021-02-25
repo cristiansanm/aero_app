@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vuelos{% endblock %}
+
+{% block body %}
+    
+    <h1 class="mt-3">Vuelo {{vuelo.id}}</h1>
+
+    <table class="table table-warning table-bordered table-striped table-responsive mt-3 text-uppercase">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vuelo.id }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ vuelo.fecha ? vuelo.fecha|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Hora</th>
+                <td>{{ vuelo.hora ? vuelo.hora|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Origen</th>
+                <td>{{ vuelo.origen.nombre}}</td>
+            </tr>
+            <tr>
+                <th>Destino</th>
+                <td>{{ vuelo.destino.nombre}}</td>
+            </tr>
+            <tr>
+                <th>Avión</th>
+                <td>{{ vuelo.avion.tipo}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('vuelos_index') }}">Volver a la lista</a>
+    <br>
+    <a class="btn btn-warning mt-2" href="{{ path('vuelos_edit', {'id': vuelo.id}) }}">Editar</a>
+
+    {{ include('vuelos/_delete_form.html.twig') }}
+{% endblock %}

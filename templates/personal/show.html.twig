@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personal{% endblock %}
+
+{% block body %}
+    <h1 class="mt-3">Personal {{personal.id}}</h1>
+
+    <table class="table table-warning table-bordered table-striped table-responsive mt-3 text-uppercase">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ personal.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ personal.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellido</th>
+                <td>{{ personal.apellido }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('personal_index') }}">Volver a la Lista</a>
+    <br>
+    <a class="btn btn-warning mt-2 mb-2" href="{{ path('personal_edit', {'id': personal.id}) }}">Editar</a>
+
+    {{ include('personal/_delete_form.html.twig') }}
+{% endblock %}

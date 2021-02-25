@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VuelosPersonal{% endblock %}
+
+{% block body %}
+    <h1>VuelosPersonal</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vuelos_personal.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('vuelos_personal_index') }}">back to list</a>
+
+    <a href="{{ path('vuelos_personal_edit', {'id': vuelos_personal.id}) }}">edit</a>
+
+    {{ include('vuelos_personal/_delete_form.html.twig') }}
+{% endblock %}

@@ -60,7 +60,7 @@ class BasesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="bases_show", methods={"GET"})
+     * @Route("/{id}/show", name="bases_show", methods={"GET"})
      */
     public function show(Bases $basis): Response
     {
@@ -101,11 +101,5 @@ class BasesController extends AbstractController
         }
 
         return $this->redirectToRoute('bases_index');
-    }
-    /**
-     * @Route ("/baseid", name="base_id")
-     */
-    public function listaId(BasesRepository $base){
-        return $this->render('bases' => $base);
     }
 }

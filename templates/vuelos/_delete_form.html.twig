@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('vuelos_delete', {'id': vuelo.id}) }}" onsubmit="return confirm('¿Quieres elminar la fila {{vuelo.id}}?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ vuelo.id) }}">
+    <button class="btn btn-danger mt-2">Eliminar</button>
+</form>

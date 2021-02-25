@@ -1,6 +1,11 @@
 <div>
-    <form action = {{ accion }}>
+    <form>
         <label for="base">Bases</label>
+        <select name="opcionbases"> 
+            {% for base in bases %}
+                <option value={{base.id}}>{{base.nombre}}</option>
+            {% endfor %}
+        </select>
         
     </form>
 </div>

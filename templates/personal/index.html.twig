@@ -1,21 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PersonalController!{% endblock %}
+{% block title %}Personal index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <a class="mt-3 btn btn-success" href="{{ path('personal_new') }}">Crear nuevo Personal</a>
+    <table class="table table-bordered table-striped table-responsive mt-3">
+        <caption>Lista del Personal</caption>
+        <thead class="text-uppercase bg-azul bg-gradient text-white">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Base</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="text-uppercase table-warning">
+        {% for personal in personals %}
+            <tr>
+                <td class="fw-bold">{{ personal.id }}</td>
+                <td>{{ personal.nombre }}</td>
+                <td>{{ personal.apellido }}</td>
+                <td>{{ personal.basepersonal.nombre }}</td>
+                <td>
+                    <a class="btn btn-primary text-lowercase" href="{{ path('personal_show', {'id': personal.id}) }}">mostrar</a>
+                    <a class="btn btn-warning text-lowercase" href="{{ path('personal_edit', {'id': personal.id}) }}">editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/aerovuelo_app/src/Controller/PersonalController.php'|file_link(0) }}">src/Controller/PersonalController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/aerovuelo_app/templates/personal/index.html.twig'|file_link(0) }}">templates/personal/index.html.twig</a></code></li>
-    </ul>
-    <a class="btn btn-warning" href={{path('lista_personal')}}>Ir a lista</a>
-</div>
+    
 {% endblock %}

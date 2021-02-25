@@ -10,13 +10,13 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>actions</th>
+                <th>acciones</th>
             </tr>
         </thead>
         <tbody class="text-uppercase table-warning">
         {% for basis in bases %}
             <tr>
-                <td>{{ basis.id }}</td>
+                <td class="fw-bold">{{ basis.id }}</td>
                 <td>{{ basis.nombre }}</td>
                 <td>
                     <a class="btn btn-primary text-lowercase" href="{{ path('bases_show', {'id': basis.id}) }}">Mostrar</a>
@@ -25,7 +25,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Registro no encontrado</td>
             </tr>
         {% endfor %}
         </tbody>

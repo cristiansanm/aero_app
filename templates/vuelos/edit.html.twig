@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Vuelo{% endblock %}
+
+{% block body %}
+    <h1>Editar Vuelo</h1>
+
+    {{ include('vuelos/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <a class="btn btn-primary" href="{{ path('vuelos_index') }}">Volver a la Lista</a>
+
+    {{ include('vuelos/_delete_form.html.twig') }}
+{% endblock %}

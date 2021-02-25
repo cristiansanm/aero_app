@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('bases_delete', {'id': basis.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+<form method="post" action="{{ path('bases_delete', {'id': basis.id}) }}" onsubmit="return confirm('¿Deseas eliminar la base {{basis.nombre}}?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ basis.id) }}">
     <button class="btn btn-danger">Borrar</button>

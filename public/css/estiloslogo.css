@@ -52,3 +52,6 @@ li.sombreado:hover{
     width: 600px;
     height: 300px;
 }
+input{
+    width: 100px;
+}

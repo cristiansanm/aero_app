@@ -55,7 +55,7 @@ class AvionesController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="aviones_show", methods={"GET"})
+     * @Route("/{id}/show", name="aviones_show", methods={"GET"})
      */
     public function show(Aviones $avione): Response
     {

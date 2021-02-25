@@ -114,4 +114,8 @@ class Aviones
 
         return $this;
     }
+    
+    public function __toString(){
+        return (string) $this->getId();
+    }
 }
