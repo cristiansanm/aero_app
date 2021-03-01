@@ -15,18 +15,18 @@
 <div class="card mt-3">
   <h5 class="card-header bg-azul text-white">Consulta Específica</h5>
   <div class="card-body">
-    <h5 class="card-title">Pilotos que usaron un avión</h5>
-    <p class="card-text">Consulta aquí cuántos pilotos han usado un determinado avión</p>
-    <a class="btn btn-warning" href="#">Hacer la consulta</a>
+    <h5 class="card-title">Personal por función</h5>
+    <p class="card-text">Consulta aquí todo el personal según su función</p>
+    <a class="btn btn-warning" href={{path('consulta_personal_funcion')}}>Hacer la consulta</a>
   </div>
 </div>
 
 <div class="card mt-3">
   <h5 class="card-header bg-azul text-white">Consulta Específica</h5>
   <div class="card-body">
-    <h5 class="card-title">Aviones en una Base</h5>
-    <p class="card-text">Consulta aquí los aviones en una determinada base</p>
-    <a class="btn btn-warning" href="#">Hacer la consulta</a>
+    <h5 class="card-title">Vuelos de un Personal</h5>
+    <p class="card-text">Consulta aquí los últimos o los próximos vuelos de un determinado personal</p>
+    <a class="btn btn-warning" href={{path('consulta_personal_fecha')}}>Hacer la consulta</a>
   </div>
 </div>
 {% endblock %}

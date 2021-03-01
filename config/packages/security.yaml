@@ -42,3 +42,7 @@ security:
         - { path: ^/vuelos, roles: [ROLE_ADMIN, ROLE_USER] }
         - { path: ^/user, roles: ROLE_ADMIN }
         - { path: ^/vuelos/personal, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/consulta/personal, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/consulta/bases, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/consulta/vuelos, roles: [ROLE_ADMIN, ROLE_USER] }
+        - { path: ^/consulta/aviones, roles: [ROLE_ADMIN, ROLE_USER] }

@@ -23,6 +23,20 @@ class PersonalRepository extends ServiceEntityRepository
      * @return Personal[] Returns an array of Personal objects
     */
 
+    public function findByPersonalOne($id)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+     /**
+     * @return Personal[] Returns an array of Personal objects
+    */
+
     public function findByBase($id)
     {
         return $this->createQueryBuilder('p')
@@ -44,6 +58,18 @@ class PersonalRepository extends ServiceEntityRepository
         ;
     }
 
+     /**
+     * @return Personal[] Returns an array of Personal objects
+    */
+
+    public function findByFuncion($idfuncion)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.funcion = :id')
+            ->setParameter('id', $idfuncion)
+            ->getQuery()
+            ->getResult();
+    }
     /*
     public function findOneBySomeField($value): ?Personal
     {

@@ -9,6 +9,8 @@ use App\Form\AvionesType;
 use App\Form\BasesType;
 use App\Repository\AvionesRepository;
 use App\Repository\BasesRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,10 +31,17 @@ class BasesController extends AbstractController
     /**
      * @Route("/index", name="bases_index", methods={"GET"})
      */
-    public function index(BasesRepository $basesRepository): Response
+    public function index(EntityManagerInterface $em, PaginatorInterface $paginator, Request $request, BasesRepository $basesRepository): Response
     {
+        $dql   = "SELECT b FROM App:Bases b";
+        $query = $em->createQuery($dql);
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+        );
         return $this->render('bases/index.html.twig', [
-            'bases' => $basesRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 

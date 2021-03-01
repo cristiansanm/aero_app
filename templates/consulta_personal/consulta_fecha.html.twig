@@ -1,0 +1,100 @@
+{% extends "base.html.twig" %}
+{% block title %} Consulta Personal {% endblock %}
+{% block body %}
+
+<form class="mt-3" action={{path('consulta_personal_fecha')}}>
+    <label for="opcion">Funcion </label>
+    <select name="opcion">
+        <option value='0'>Últimos Vuelos</option>
+        <option value='1'>Próximos Vuelos</option>
+    </select>
+    <div class="row mt-2">
+    {% for index,f in funciones %}
+        <label class="text-uppercase" for="funcion">{{f.nombre}}</funciones>
+        <input type="radio" class="op" name="funcion" value="{{f.id}}"/>
+    {% endfor %}
+    </div>
+    <div class="row mt-2">
+        <select class="w-25" id="per" name="idpersonal">
+
+        </select>
+    </div>
+    <input class="mt-2 btn btn-primary btn" type="submit" value="Enviar">
+</form>
+<script>
+    var lista = document.getElementById('per');
+    var op1 = document.querySelectorAll('.op');
+    
+    op1.forEach(op => op.addEventListener('click', ()=>{
+        if(op.value == 1){
+            lista.innerHTML = '{% for persona in pilotos %}' +
+        '<option value="{{persona.id}}">{{persona.apellido}} - {{persona.id}}</option>' + 
+        '{% endfor %}';
+        }
+        if(op.value == 2){
+            lista.innerHTML = '{% for persona in copilotos %}' +
+        '<option value="{{persona.id}}">{{persona.apellido}} - {{persona.id}}</option>' + 
+        '{% endfor %}';
+        }
+        if(op.value == 3){
+            lista.innerHTML = '{% for persona in ingenieros %}' +
+        '<option value="{{persona.id}}">{{persona.apellido}} - {{persona.id}}</option>' + 
+        '{% endfor %}';
+        }
+        if(op.value == 4){
+            lista.innerHTML = '{% for persona in auxiliares %}' +
+        '<option value="{{persona.id}}">{{persona.apellido}} - {{persona.id}}</option>' + 
+        '{% endfor %}';
+        }
+        
+    }))
+    
+</script>
+
+{% if personal != null %}
+    <table class="table table-bordered table-striped table-responsive mt-3">
+        <caption>
+            {% if opcion1 == 0 %}{
+                Últimos Vuelos del Personal {{idpersonal}}
+            }
+            {% elseif opcion1 == 1 %}{
+                Próximos Vuelos del Personal {{idpersonal}}
+            }
+            {% endif %}
+        </caption>
+        <thead class="text-uppercase bg-azul bg-gradient text-white">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Vuelo</th>
+                <th>Fecha</th>
+                <th>Acción</th>
+            </tr>
+            </thead>
+            <tbody class="text-uppercase table-light">
+                {% for persona in personal %}
+                <tr>
+                    <td class="fw-bold">{{persona.id}}</td>
+                    <td>{{persona.nombre}}</td>
+                    <td>{{persona.apellido}}</td>
+                    <td class="fw-bold">{{persona.1}}</td>
+                    <td>{{persona.fecha|date('Y-m-d')}}</td>
+                    <td>
+                        <a class="btn btn-primary text-lowercase" href="{{ path('personal_show', {'id': persona.id}) }}">personal</a>
+                        <a class="btn btn-primary text-lowercase" href="{{ path('vuelos_show', {'id': persona.1}) }}">vuelo</a>
+                    </td>
+                </tr>   
+                {% else %}
+                <tr>
+                    <td scope="row">No hay resultados</td>
+                </tr>
+                {% endfor %}
+                
+                
+            </tbody>
+    </table>
+{% endif %}
+
+
+{% endblock %}

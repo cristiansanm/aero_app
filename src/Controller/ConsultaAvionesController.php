@@ -24,7 +24,7 @@ class ConsultaAvionesController extends AbstractController
         $idAvion = $request->query->get('idavion', 1);
         
         $dql = "SELECT IDENTITY (p.funcion), p.nombre, p.apellido, p.id  FROM App:VuelosPersonal vp, App:Vuelos v, App:Personal p
-        WHERE vp.vueloId = v.id AND p.id = vp.piloto AND {$idAvion} = v.avion";
+        WHERE vp.vueloId = v.id AND p.id = vp.piloto AND {$idAvion} = v.avion ORDER BY p.id ASC";
         
        
         return $this->render('consulta_aviones/consulta_personal.html.twig',[

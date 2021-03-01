@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('vuelos_personal_delete', {'id': vuelos_personal.id}) }}" onsubmit="return confirm('¿Deseas elminar los registros del vuelo {{vuelos_personal.id}}?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ vuelos_personal.id) }}">
-    <button class="btn btn-danger mt-2">Eliminar</button>
+    <button class="btn btn-danger mt-2">Borrar</button>
 </form>

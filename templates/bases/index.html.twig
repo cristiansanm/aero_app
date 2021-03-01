@@ -3,6 +3,9 @@
 {% block title %}Listado de Bases{% endblock %}
 
 {% block body %}
+    <div class="count float-end mt-3 mb-2">
+        <span class="badge bg-secondary">Nº de Bases => {{ pagination.getTotalItemCount }}</span>
+    </div>
     {% if is_granted('ROLE_ADMIN') %}
         <a class="mt-3 btn btn-success" href="{{ path('bases_new') }}">Crear Nueva Base</a>
     {% endif %}
@@ -10,14 +13,16 @@
         <caption>Lista de bases</caption>
         <thead class="text-uppercase bg-azul bg-gradient text-white">
             <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>acciones</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'b.id') }}</th>
+                <th{% if pagination.isSorted('b.nombre') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Nombre', 'b.nombre') }}
+                </th>
+                <th>Acciones</th>
             </tr>
         </thead>
-        <tbody class="text-uppercase table-warning">
-        {% for basis in bases %}
-            <tr>
+        <tbody class="text-uppercase table-light">
+        {% for basis in pagination %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
                 <td class="fw-bold">{{ basis.id }}</td>
                 <td>{{ basis.nombre }}</td>
                 <td>
@@ -35,5 +40,7 @@
         </tbody>
     </table>
 
-    
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div> 
 {% endblock %}

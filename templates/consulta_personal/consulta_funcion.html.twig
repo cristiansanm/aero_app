@@ -1,12 +1,12 @@
 {% extends "base.html.twig" %}
-{% block title %} Consulta Aviones {% endblock %}
+{% block title %} Consulta Personal {% endblock %}
 {% block body %}
 
-<form class="mt-3" action={{path('consulta_pilotos_aviones')}}>
-    <label for="idavion">Base: </label>
-    <select name="idavion">
-        {% for avion in aviones %}
-        <option value={{avion.id}}>{{avion.tipo}} - {{avion.id}}</option>
+<form class="mt-3" action={{path('consulta_personal_funcion')}}>
+    <label for="funcion">Funcion </label>
+    <select name="funcion">
+        {% for f in funciones %}
+        <option value={{f.id}}>{{f.nombre}} - {{f.id}}</option>
         {% endfor %}
     </select>
     <input class="ms-1 btn btn-primary" type="submit" value="Enviar">
@@ -14,15 +14,13 @@
 
 {% if personal != null %}
     <table class="table table-bordered table-striped table-responsive mt-3">
-        
-        <caption>Lista de Pilotos que usaron el avión {{avion1}}</caption>
+        <caption>Personal con Función {{funcion1}}</caption>
         <thead class="text-uppercase bg-azul bg-gradient text-white">
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>Función</th>
-                <th>Acción</th>
+                <th>Funcion</th>
             </tr>
             </thead>
             <tbody class="text-uppercase table-light">
@@ -31,13 +29,7 @@
                     <td class="fw-bold">{{persona.id}}</td>
                     <td>{{persona.nombre}}</td>
                     <td>{{persona.apellido}}</td>
-                    <td>
-                        {% if persona.1 == 1 %}
-                            Piloto
-                        {% endif %}
-                        
-                    </td>
-                    <td><a class="btn btn-primary text-lowercase" href="{{ path('personal_show', {'id': persona.id}) }}">mostrar</a></td>
+                    <td>{{persona.funcion.nombre}}</td>
                 </tr>   
                 {% else %}
                 <tr>
@@ -52,5 +44,3 @@
 
 
 {% endblock %}
-
-

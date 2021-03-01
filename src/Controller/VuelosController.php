@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Vuelos;
 use App\Form\VuelosType;
-use App\Repository\VuelosRepository;
+use App\Repository\AvionesRepository;
+use App\Repository\CiudadesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,23 +45,41 @@ class VuelosController extends AbstractController
     /**
      * @Route("/new", name="vuelos_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, AvionesRepository $a, CiudadesRepository $c): Response
     {
         $vuelo = new Vuelos();
-        $form = $this->createForm(VuelosType::class, $vuelo);
-        $form->handleRequest($request);
+        
+        $origen = $request->query->get('origen', null);
+        $destino = $request->query->get('destino', null);
+        $fecha = $request->query->get('fecha', null);
+        $hora = $request->query->get('hora', null);
+        $avion = $request->query->get('avion', 1);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($origen != null && $destino != null && $fecha != null && $hora != null && $avion != null) {
+            $or = $c->findByOrigenOne($origen);
+            $des = $c->findByDestinoOne($destino);
+            $avi = $a->findByAvionOne($avion);
+            $fec = new \DateTime($fecha);
+            $hor = new \DateTime($hora);
+            $vuelo = $vuelo->setOrigen($or);
+            $vuelo = $vuelo->setDestino($des);
+            $vuelo = $vuelo->setFecha($fec);
+            $vuelo = $vuelo->setHora($hor);
+            $vuelo = $vuelo->setAvion($avi);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($vuelo);
             $entityManager->flush();
+            
 
-            return $this->redirectToRoute('vuelos_index');
+            return $this->redirectToRoute('vuelos_personal_new');
         }
 
         return $this->render('vuelos/new.html.twig', [
-            'vuelo' => $vuelo,
-            'form' => $form->createView(),
+            'origen' => $c->findAll(),
+            'destino' => $c->findAll(),
+            'aviones' => $a->findAll(),
+
         ]);
     }
 

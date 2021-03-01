@@ -27,7 +27,7 @@
     </table>
 
     <a class="btn btn-primary" href="{{ path('aviones_index') }}">Volver a la lista</a>
-    {% if is_granted('ROLE_ADMIN',object,field) %}
+    {% if is_granted('ROLE_ADMIN') %}
     <br>
     <a class="btn btn-warning mt-2 mb-2" href="{{ path('aviones_edit', {'id': avione.id}) }}">Editar</a>
 

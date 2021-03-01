@@ -25,6 +25,21 @@ class AvionesRepository extends ServiceEntityRepository
         return $this->getEntityManager()
         ->createQuery($dql)->setParameter('id', $idForm)->getOneOrNullResult();
     }
+    
+    /**
+     * @return Aviones[] Returns an array of Aviones objects
+     */
+    
+    public function findByAvionOne($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     /**
      * @return Aviones[] Returns an array of Aviones objects
      */

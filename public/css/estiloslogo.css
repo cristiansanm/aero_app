@@ -55,3 +55,18 @@ li.sombreado:hover{
 input{
     width: 100px;
 }
+fieldset{
+    background-color:rgb(228, 193, 40);
+    width: 100%;
+    border-radius: 5px;
+    border-color: #E0E0E0;
+    padding-bottom: 2%;
+    
+}
+legend{
+    background-color:rgb(250, 250, 170);
+    width: 50%;
+    text-align:center;
+    margin-left: 2%;
+    border-radius: 5px;
+}

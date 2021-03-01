@@ -48,7 +48,7 @@ class VuelosPersonalController extends AbstractController
             $entityManager->persist($vuelosPersonal);
             $entityManager->flush();
 
-            return $this->redirectToRoute('vuelos_personal_index');
+            return $this->redirectToRoute('vuelos_index');
         }
 
         return $this->render('vuelos_personal/new.html.twig', [

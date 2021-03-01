@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Personal index{% endblock %}
+{% block title %}Listado de Personal{% endblock %}
 
 {% block body %}
     <div class="count float-end mt-3">
         <span class="badge bg-secondary">Nº de Personal => {{ pagination.getTotalItemCount }}</span>
     </div>
-    <a class="mt-3 btn btn-success" href="{{ path('personal_new') }}">Crear nuevo Personal</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a class="mt-3 btn btn-success" href="{{ path('personal_new') }}">Crear nuevo Personal</a>
+    {% endif %}
     <table class="table table-bordered table-striped table-responsive mt-3">
         <caption>Lista del Personal</caption>
         <thead class="text-uppercase bg-azul bg-gradient text-white">
@@ -23,7 +25,7 @@
                 <th>Acciones</th>
             </tr>
         </thead>
-        <tbody class="text-uppercase table-warning">
+        <tbody class="text-uppercase table-light">
         {# table body #}
         {% for persona in pagination %}
         <tr {% if loop.index is odd %}class="color"{% endif %}>
@@ -33,8 +35,10 @@
             <td>{{ persona.funcion.nombre }}</td>
             <td>{{ persona.basepersonal.nombre }}</td>
             <td>
-                <a class="btn btn-primary text-lowercase" href="{{ path('aviones_show', {'id': persona.id}) }}">mostrar</a>
-                <a class="btn btn-warning text-lowercase" href="{{ path('aviones_edit', {'id': persona.id}) }}">editar</a>
+                <a class="btn btn-primary text-lowercase" href="{{ path('personal_show', {'id': persona.id}) }}">mostrar</a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a class="btn btn-warning text-lowercase" href="{{ path('personal_edit', {'id': persona.id}) }}">editar</a>
+                {% endif %}
             </td>
             
         {% else %}

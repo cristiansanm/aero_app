@@ -23,22 +23,22 @@ class VuelosPersonal
     private $vueloId;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Personal::class, inversedBy="pilotoId")
+     * @ORM\ManyToOne(targetEntity=Personal::class, inversedBy="pilotoId", cascade={"persist"})
      */
     private $piloto;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Personal::class, inversedBy="copilotoId")
+     * @ORM\ManyToOne(targetEntity=Personal::class, inversedBy="copilotoId", cascade={"persist"})
      */
     private $copiloto;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Personal::class, inversedBy="ingenieroId")
+     * @ORM\ManyToOne(targetEntity=Personal::class, inversedBy="ingenieroId", cascade={"persist"})
      */
     private $ingeniero;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Personal::class, inversedBy="auxiliarId")
+     * @ORM\ManyToOne(targetEntity=Personal::class, inversedBy="auxiliarId", cascade={"persist"})
      */
     private $auxiliar;
 

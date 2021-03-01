@@ -19,6 +19,33 @@ class CiudadesRepository extends ServiceEntityRepository
         parent::__construct($registry, Ciudades::class);
     }
 
+    /**
+     * @return Ciudades[] Returns an array of Vuelos objects
+     */
+    
+    public function findByOrigenOne($origen)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.id= :origen')
+            ->setParameter('origen', $origen)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    /**
+     * @return Ciudades[] Returns an array of Vuelos objects
+     */
+    
+    public function findByDestinoOne($destino)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.id= :destino')
+            ->setParameter('destino', $destino)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
     // /**
     //  * @return Ciudades[] Returns an array of Ciudades objects
     //  */

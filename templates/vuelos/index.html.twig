@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vuelos index{% endblock %}
+{% block title %}Lista de Vuelos{% endblock %}
 
 {% block body %}
     <div class="count float-end mt-3">
@@ -27,7 +27,7 @@
                 <th>Acciones</th>
             </tr>
         </thead>
-        <tbody class="text-uppercase table-warning">
+        <tbody class="text-uppercase table-light">
         {% for vuelo in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
                 <td class="fw-bold">{{ vuelo.id }}</td>
