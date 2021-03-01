@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+{% block title %} Consulta Bases {% endblock %}
+{% block body %}
+
+<form action={{path('consulta_vuelos_personal')}}>
+    <label for="vuelo">Base: </label>
+    <select name="vuelo">
+        {% for vuelo in vuelos %}
+        <option value={{vuelo.id}}>{{vuelo.origen.nombre}} - {{vuelo.destino.nombre}} - {{vuelo.id}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Enviar">
+</form>
+
+{% if personal != null %}
+    <table class="table table-striped table-inverse table-responsive">
+        
+        <caption>Lista de Pilotos en Vuelo {{vuelo1}}</caption>
+        <thead>
+            <tr>
+                <th>Vuelo</th>
+                <th>Piloto</th>
+                <th>Copiloto</th>
+                <th>Ingeniero</th>
+                <th>Auxiliar</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for persona in personal %}
+                <tr>
+                    <td>{{vuelo1}}</td>
+                    <td>{{persona.pil}} - {{persona.pilid}}</td>
+                    <td>{{persona.cpil}} - {{persona.cpilid}}</td>
+                    <td>{{persona.inge}} - {{persona.ingeid}}</td>
+                    <td>{{persona.auxi}} - {{persona.auxid}}</td>
+                </tr>   
+                {% else %}
+                <tr>
+                    <td scope="row">No hay resultados</td>
+                </tr>
+                {% endfor %}
+                
+                
+            </tbody>
+    </table>
+{% endif %}
+
+
+{% endblock %}
+
+

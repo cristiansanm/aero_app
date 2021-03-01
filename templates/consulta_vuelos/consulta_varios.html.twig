@@ -1,0 +1,89 @@
+{% extends "base.html.twig" %}
+{% block title %} Consulta Bases {% endblock %}
+{% block body %}
+
+<form action={{path('consulta_vuelos_varios')}}>
+
+    <label for="opcion">Origen: </label>
+    <input type="radio" name="opcion" id="op0" value="0">
+    <label for="opcion">Destino: </label>
+    <input type="radio" name="opcion" id="op1" value="1">
+    <label for="opcion">Fecha: </label>
+    <input type="radio" name="opcion" id="op2" value="2">
+    
+    <div id="opciones">
+    </div>
+    <input type="submit" value="Enviar"/>
+</form>
+{% block javascripts %}
+    <script>
+        var op0 = document.getElementById('op0');
+        var op1 = document.getElementById('op1');
+        var op2 = document.getElementById('op2');
+        var div = document.getElementById('opciones')
+        
+        op0.addEventListener('click', ()=>{
+                div.innerHTML = "<select name='dato'>" +
+                "{% for f in ciudades %}" +
+                "<option value={{f.id}}>{{f.nombre}}</option>" +
+                "{% endfor %}";
+        });
+        op1.addEventListener('click', ()=>{
+                div.innerHTML = "<select name='dato'>" +
+                "{% for f in ciudades %}" +
+                "<option value={{f.id}}>{{f.nombre}}</option>" +
+                "{% endfor %}";
+        });
+        op2.addEventListener('click', ()=>{
+                div.innerHTML = '<input style="width: 14%" name="dato" type="date" />';
+        });
+        
+    </script>
+{% endblock %}
+
+{% if personal != null %}
+    <table class="table table-striped table-inverse table-responsive">
+        
+        <caption>Vuelos según 
+            {% if opcion == 0 %}
+                Origen
+            {% elseif opcion == 1 %}
+                Destino
+            {% elseif opcion == 2 %}
+                Fecha
+            {% endif %}
+            
+        </caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for persona in personal %}
+                <tr>
+                    <td>{{persona.id}}</td>
+                    <td>{{persona.origen.nombre}}</td>
+                    <td>{{persona.destino.nombre}}</td>
+                    <td>{{persona.fecha|date('Y-m-d')}}</td>
+                    <td>{{persona.hora|date('H:i:s')}}</td>
+                </tr>   
+                {% else %}
+                <tr>
+                    <td scope="row">No hay resultados</td>
+                </tr>
+                {% endfor %}
+                
+                
+            </tbody>
+    </table>
+{% endif %}
+
+
+{% endblock %}
+
+

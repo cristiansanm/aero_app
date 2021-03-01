@@ -20,22 +20,58 @@ class VuelosRepository extends ServiceEntityRepository
     }
 
     
-    // /**
-    //  * @return Vuelos[] Returns an array of Vuelos objects
-    //  */
+    /**
+     * @return Vuelos[] Returns an array of Vuelos objects
+     */
     
-    // public function findByAvion($idAvion)
-    // {
-    //     return $this->createQueryBuilder('v')
-    //         ->andWhere('v.exampleField = :val')
-    //         ->setParameter('val', $value)
-    //         ->orderBy('v.id', 'ASC')
-    //         ->setMaxResults(10)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
+    public function findByOrigen($origen)
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.origen= :origen')
+            ->setParameter('origen', $origen)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    /**
+     * @return Vuelos[] Returns an array of Vuelos objects
+     */
     
+    public function findByDestino($destino)
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.destino= :destino')
+            ->setParameter('destino', $destino)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    /**
+     * @return Vuelos[] Returns an array of Vuelos objects
+     */
+    
+    public function findByFecha($fecha)
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.fecha= :fecha')
+            ->setParameter('fecha', $fecha)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    /**
+     * @return Vuelos[] Returns an array of Vuelos objects
+     */
+    
+    public function findByAvion($idAvion)
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.avion= :idavion')
+            ->setParameter('idavion', $idAvion)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     
 
     /*

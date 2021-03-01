@@ -15,18 +15,27 @@
 <div class="card mt-3">
   <h5 class="card-header bg-azul text-white">Consulta Específica</h5>
   <div class="card-body">
-    <h5 class="card-title">Personal en una Base</h5>
-    <p class="card-text">Consulta aquí el personal actual en una determinada base</p>
-    <a class="btn btn-warning" href="#">Hacer la consulta</a>
+    <h5 class="card-title">Personal en un Vuelo determinado</h5>
+    <p class="card-text">Consulta aquí el personal actual en un vuelo determinado</p>
+    <a class="btn btn-warning" href={{path('consulta_vuelos_personal')}}>Hacer la consulta</a>
   </div>
 </div>
 
 <div class="card mt-3">
   <h5 class="card-header bg-azul text-white">Consulta Específica</h5>
   <div class="card-body">
-    <h5 class="card-title">Aviones en una Base</h5>
-    <p class="card-text">Consulta aquí los aviones en una determinada base</p>
-    <a class="btn btn-warning" href="#">Hacer la consulta</a>
+    <h5 class="card-title">Vuelos por Origen, Destino o Fecha</h5>
+    <p class="card-text">Consulta aquí los vuelos con determinado origen, destino o fecha</p>
+    <a class="btn btn-warning" href={{path('consulta_vuelos_varios')}}>Hacer la consulta</a>
+  </div>
+</div>
+
+<div class="card mt-3">
+  <h5 class="card-header bg-azul text-white">Consulta Específica</h5>
+  <div class="card-body">
+    <h5 class="card-title">Aviones en usado en vuelos</h5>
+    <p class="card-text">Consulta aquí los vuelos que han usado un avión determinado</p>
+    <a class="btn btn-warning" href={{path('consulta_vuelos_avion')}}>Hacer la consulta</a>
   </div>
 </div>
 {% endblock %}

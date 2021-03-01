@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+{% block title %} Consulta Bases {% endblock %}
+{% block body %}
+
+<form action={{path('consulta_vuelos_avion')}}>
+    <label for="avion">Base: </label>
+    <select name="avion">
+        {% for avion in aviones %}
+        <option value={{avion.id}}>{{avion.tipo}} - {{avion.id}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Enviar">
+</form>
+
+{% if vuelos != null %}
+    <table class="table table-striped table-inverse table-responsive">
+        
+        <caption>Lista de Vuelos en Avion {{avion1}}</caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Avion</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for vuelo in vuelos %}
+                <tr>
+                    <td>{{vuelo.id}}</td>
+                    <td>{{vuelo.fecha|date('Y-m-d')}}</td>
+                    <td>{{vuelo.hora|date('H:i:s')}}</td>
+                    <td>{{vuelo.origen.nombre}}</td>
+                    <td>{{vuelo.destino.nombre}}</td>
+                    <td>{{vuelo.avion.tipo}}</td>
+                </tr>   
+                {% else %}
+                <tr>
+                    <td scope="row">No hay resultados</td>
+                </tr>
+                {% endfor %}
+                
+                
+            </tbody>
+    </table>
+{% endif %}
+
+
+{% endblock %}
+
+
