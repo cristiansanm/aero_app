@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+{% block title %} Consulta Bases {% endblock %}
+{% block body %}
+
+<form action={{path('consulta_disponible_aviones')}}>
+    <label for="disponible">Base: </label>
+    <select name="disponible">
+        <option value="0">No disponible</option>
+        <option value="1">Disponible</option>
+    </select>
+    <input type="submit" value="Enviar">
+</form>
+
+{% if disponibles != null %}
+    <table class="table table-striped table-inverse table-responsive">
+        
+        <caption>Lista de aviones 
+            {% if dispo %}
+                Disponibles
+            {% else %}
+                No Disponibles
+            {% endif %}
+        </caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Base</th>
+                <th>Disponible</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for avion in disponibles %}
+                <tr>
+                    <td>{{avion.id}}</td>
+                    <td>{{avion.tipo}}</td>
+                    <td>{{avion.baseavion.id}}</td>
+                    <td>
+                        {% if avion.disponible %}  
+                            <span class="btn btn-success"><i class="fas fa-check-circle"></i></span>  
+                        
+                        {% else %}
+                            <span class="btn btn-danger"><i class="fas fa-times-circle"></i></span>
+                        {% endif %}
+                        
+                    </td>
+                </tr>   
+                {% else %}
+                <tr>
+                    <td scope="row">No hay resultados</td>
+                </tr>
+                {% endfor %}
+                
+                
+            </tbody>
+    </table>
+{% endif %}
+
+
+{% endblock %}
+
+

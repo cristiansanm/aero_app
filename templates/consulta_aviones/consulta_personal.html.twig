@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+{% block title %} Consulta Bases {% endblock %}
+{% block body %}
+
+<form action={{path('consulta_pilotos_aviones')}}>
+    <label for="idavion">Base: </label>
+    <select name="idavion">
+        {% for avion in aviones %}
+        <option value={{avion.id}}>{{avion.tipo}} - {{avion.id}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Enviar">
+</form>
+
+{% if personal != null %}
+    <table class="table table-striped table-inverse table-responsive">
+        
+        <caption>Lista de Pilotos en Base {{avion1}}</caption>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Función</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for persona in personal %}
+                <tr>
+                    <td>{{persona.id}}</td>
+                    <td>{{persona.nombre}}</td>
+                    <td>{{persona.apellido}}</td>
+                    <td>
+                        {% if persona.1 == 1 %}
+                            Piloto
+                        {% endif %}
+                        
+                    </td>
+                </tr>   
+                {% else %}
+                <tr>
+                    <td scope="row">No hay resultados</td>
+                </tr>
+                {% endfor %}
+                
+                
+            </tbody>
+    </table>
+{% endif %}
+
+
+{% endblock %}
+
+

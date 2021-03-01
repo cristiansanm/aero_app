@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\VuelosPersonal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,22 +20,22 @@ class VuelosPersonalRepository extends ServiceEntityRepository
         parent::__construct($registry, VuelosPersonal::class);
     }
 
-    // /**
-    //  * @return VuelosPersonal[] Returns an array of VuelosPersonal objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    
+
+    //  /**
+    //   * @return VuelosPersonal[] Returns an array of VuelosPersonal objects
+    //   */
+    // public function findByPiloto($idVuelos)
+    // {
+
+    //     return $this->createQueryBuilder('va')
+    //         ->andWhere('v.vueloId = :idVuelos')
+    //         ->setParameter('val', $idVuelos)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+    
 
     /*
     public function findOneBySomeField($value): ?VuelosPersonal

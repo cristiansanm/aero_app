@@ -19,22 +19,24 @@ class VuelosRepository extends ServiceEntityRepository
         parent::__construct($registry, Vuelos::class);
     }
 
+    
     // /**
     //  * @return Vuelos[] Returns an array of Vuelos objects
     //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    
+    // public function findByAvion($idAvion)
+    // {
+    //     return $this->createQueryBuilder('v')
+    //         ->andWhere('v.exampleField = :val')
+    //         ->setParameter('val', $value)
+    //         ->orderBy('v.id', 'ASC')
+    //         ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
+    
+    
 
     /*
     public function findOneBySomeField($value): ?Vuelos

@@ -19,22 +19,30 @@ class PersonalRepository extends ServiceEntityRepository
         parent::__construct($registry, Personal::class);
     }
 
-    // /**
-    //  * @return Personal[] Returns an array of Personal objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+     * @return Personal[] Returns an array of Personal objects
+    */
+
+    public function findByBase($id)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('p.basepersonal = :id')
+            ->setParameter('id', $id)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+    public function findByAvion($id)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.funcion = piloto')
+            ->andWhere('p.baseavion = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Personal
