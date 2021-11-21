@@ -27,7 +27,7 @@
                 <td>{{ basis.nombre }}</td>
                 <td>
                     <a class="btn btn-primary text-lowercase" href="{{ path('bases_show', {'id': basis.id}) }}">Mostrar</a>
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
                         <a class="btn btn-warning text-lowercase" href="{{ path('bases_edit', {'id': basis.id}) }}">Editar</a>
                     {% endif %}
                 </td>

@@ -17,12 +17,22 @@ use Doctrine\ORM\EntityManagerInterface;
  */
 class AvionesController extends AbstractController
 {
+    /*Ruta que devuelve la vista de la página principal de aviones */
+    
     /**
      * @Route("/", name="aviones_principal")
      */
     public function principal(){
         return $this->render('aviones/principal_bases.html.twig');
     }
+
+    /*Ruta que devuelve la lista de aviones con todos sus campos y lo visualiza en la página index.
+    *Esta página también contiene el paginador que mediante el dql obtiene todo el array de objetos de
+    *vuelos
+    *El paginador muestra la cantidad de filas que le pasamos por parámetros y divide la paǵina en 
+    *pequeñas listas de visualizaciones para así ver por completo el contenido.
+    */
+
     /**
      * @Route("/index", name="aviones_index", methods={"GET"})
      */
@@ -40,6 +50,12 @@ class AvionesController extends AbstractController
         ]);
     }
 
+    /** 
+     * Esta página crea nuevos aviones con el form que autogeneró el crud.
+     * Con esto podemos crear aviones desde la pantalla principal y designarle esta tarea
+     * a un usuario específico.
+    */
+    
     /**
      * @Route("/new", name="aviones_new", methods={"GET","POST"})
      */

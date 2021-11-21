@@ -27,8 +27,12 @@
     </table>
 
     <a class="btn btn-primary" href="{{ path('personal_index') }}">Volver a la Lista</a>
+    
+    {% if is_granted('ROLE_ADMIN') %}
     <br>
     <a class="btn btn-warning mt-2 mb-2" href="{{ path('personal_edit', {'id': personal.id}) }}">Editar</a>
 
     {{ include('personal/_delete_form.html.twig') }}
+    {% endif %}
+    
 {% endblock %}
